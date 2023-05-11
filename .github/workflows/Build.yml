@@ -100,6 +100,6 @@ jobs:
         tag: "${{ env.DEVICE }}--${{ env.FILE_DATE }}"
         artifacts: "openwrt/bin/targets/*/*/*"
         body: |
-          # 未测试×
+          # 潮汕屌毛屌大
           
-          IP: 192.168.88.1 | Password: none
+          IP: 192.168.88.1 | Password: password
