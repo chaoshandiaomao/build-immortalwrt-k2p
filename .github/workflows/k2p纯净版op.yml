@@ -1,4 +1,4 @@
-name: k2p openwrt纯净版
+name: k2popenwrt纯净版
 
 on:
   repository_dispatch:
