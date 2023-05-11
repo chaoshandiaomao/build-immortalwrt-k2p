@@ -10,12 +10,12 @@ on:
         default: 'false'
         
 env:
-  REPO_URL: https://github.com/hanwckf/immortalwrt-mt798x
-  REPO_BRANCH: openwrt-21.02
+  REPO_URL: https://github.com/padavanonly/immortalwrt
+  REPO_BRANCH: master
   FEEDS_CONF: feeds.conf.default
   CONFIG_FILE: .config
   TZ: Asia/Shanghai
-  DEVICE: 360t7
+  DEVICE: k2p
   UPLOAD_OUTPUT: true
 
 jobs:
@@ -65,7 +65,7 @@ jobs:
     - name: 修改 Lan IP
       run: |
         cd openwrt
-        sed -i 's/192.168.1.1/192.168.2.1/g' package/base-files/files/bin/config_generate
+        sed -i 's/192.168.1.1/192.168.88.1/g' package/base-files/files/bin/config_generate
         neofetch
 
     - name: 下载依赖
@@ -102,4 +102,4 @@ jobs:
         body: |
           # 未测试×
           
-          IP: 192.168.2.1 | Password: none
+          IP: 192.168.88.1 | Password: none
