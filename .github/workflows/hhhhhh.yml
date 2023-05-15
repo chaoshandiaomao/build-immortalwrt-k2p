@@ -1,4 +1,4 @@
-name: 123
+name: test2
 
 on:
   repository_dispatch:
@@ -15,11 +15,11 @@ env:
   FEEDS_CONF: feeds.conf.default
   CONFIG_FILE: .config
   TZ: Asia/Shanghai
-  DEVICE: 360t7
+  DEVICE: k2p
   UPLOAD_OUTPUT: true
 
 jobs:
-   _360t7:
+   _321:
     runs-on: ubuntu-20.04
     permissions:
       contents: write
@@ -64,13 +64,13 @@ jobs:
 
     - name: 修改 Lan IP
       run: |
-        cd immortalwrt
+        cd openwrt
         sed -i 's/192.168.1.1/192.168.88.1/g' package/base-files/files/bin/config_generate
         neofetch
 
     - name: 下载依赖
       run: |
-        cd immortalwrt
+        cd openwrt
         make defconfig
         make download -j8
         find dl -size -1024c -exec ls -l {} \;
@@ -78,7 +78,7 @@ jobs:
 
     - name: 编译固件
       run: |
-        cd immortalwrt
+        cd openwrt
         make -j$(nproc)
         echo "FILE_DATE=$(date +"%Y%m%d%H%M")" >> $GITHUB_ENV
 
@@ -87,7 +87,7 @@ jobs:
       if: env.UPLOAD_OUTPUT == 'true' && !cancelled()
       with:
         name: ${{ env.DEVICE }}--${{ env.FILE_DATE }}
-        path: immortalwrt/bin
+        path: openwrt/bin
         
     - name: 整理输出文件
       run: |
@@ -98,6 +98,8 @@ jobs:
       uses: ncipollo/release-action@v1
       with:
         tag: "${{ env.DEVICE }}--${{ env.FILE_DATE }}"
-        artifacts: "immortalwrt/bin/targets/*/*/*"
+        artifacts: "openwrt/bin/targets/*/*/*"
         body: |
-         
+          # 未测试×
+          
+          IP: 192.168.2.1 | Password: none
