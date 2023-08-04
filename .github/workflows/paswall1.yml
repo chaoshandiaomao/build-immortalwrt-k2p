@@ -1,4 +1,4 @@
-name: 237openwrt
+name: passwall 1
 
 on:
   repository_dispatch:
